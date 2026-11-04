@@ -4,6 +4,9 @@ on:
   push:
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -33,3 +36,14 @@ jobs:
         with:
           name: KeplerOffice-APK
           path: KeplerOffice.apk
+
+      - name: Publish download link (GitHub Release)
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v1.0.${{ github.run_number }}
+          name: Kepler Office v1.0.${{ github.run_number }}
+          make_latest: true
+          files: KeplerOffice.apk
+          body: |
+            Kepler Office for Android — free office suite (Write, Sheets, Slides).
+            Download KeplerOffice.apk below and install it on your phone.
