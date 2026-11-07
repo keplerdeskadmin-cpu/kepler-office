@@ -23,6 +23,8 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
+import androidx.core.content.FileProvider;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
@@ -168,6 +170,48 @@ public class MainActivity extends Activity {
                 String jobName = (title == null || title.isEmpty()) ? "Kepler Document" : title;
                 PrintDocumentAdapter adapter = webView.createPrintDocumentAdapter(jobName);
                 pm.print(jobName, adapter, new PrintAttributes.Builder().build());
+            });
+        }
+
+        @JavascriptInterface
+        public void shareFile(String name, String content, String mime) {
+            try {
+                File dir = new File(getCacheDir(), "shared");
+                if (!dir.exists()) dir.mkdirs();
+                File f = new File(dir, name);
+                try (FileOutputStream fos = new FileOutputStream(f)) {
+                    fos.write(content.getBytes(StandardCharsets.UTF_8));
+                }
+                Uri uri = FileProvider.getUriForFile(ctx, getPackageName() + ".fileprovider", f);
+                Intent send = new Intent(Intent.ACTION_SEND);
+                send.setType(mime);
+                send.putExtra(Intent.EXTRA_STREAM, uri);
+                send.putExtra(Intent.EXTRA_SUBJECT, name);
+                send.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                final Intent chooser = Intent.createChooser(send, "Share " + name);
+                runOnUiThread(() -> startActivity(chooser));
+            } catch (Exception e) {
+                toast("Could not share file");
+            }
+        }
+
+        @JavascriptInterface
+        public void shareText(String text) {
+            Intent send = new Intent(Intent.ACTION_SEND);
+            send.setType("text/plain");
+            send.putExtra(Intent.EXTRA_TEXT, text);
+            final Intent chooser = Intent.createChooser(send, "Share");
+            runOnUiThread(() -> startActivity(chooser));
+        }
+
+        @JavascriptInterface
+        public void openUrl(String url) {
+            runOnUiThread(() -> {
+                try {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+                } catch (Exception e) {
+                    toast("No app found to open this");
+                }
             });
         }
 

@@ -186,6 +186,60 @@ th.hl{background:#d6efe1!important;color:var(--sheets)!important;font-weight:600
   .p-slide:last-child{break-after:auto;page-break-after:auto}
   .p-slide .slide{transform:scale(1.33333);transform-origin:0 0}
 }
+
+/* v1.2 */
+.topbtn#themeBtn{padding:4px 9px;font-size:15px;background:transparent}
+.get-app{display:inline-flex;align-items:center;gap:12px;margin:-18px 0 6px;padding:10px 16px;border-radius:12px;background:rgba(255,255,255,.1);color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,.18)}
+.get-app:hover{background:rgba(255,255,255,.18)}.get-app span{font-size:24px}.get-app b{display:block;font-size:14px}.get-app small{opacity:.7;font-size:12px}
+.sec-row{display:flex;align-items:flex-end;justify-content:space-between;gap:10px}
+.sec-row .sec{margin-bottom:14px}
+.hbtn{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.18);border-radius:8px;padding:6px 10px;margin:0 0 10px 6px;cursor:pointer;font-size:13px}
+.hbtn:hover{background:rgba(255,255,255,.2)}
+.sheet-body{flex:1;min-height:0;display:flex}
+.sheet-body .grid-wrap{flex:1;min-width:0}
+.charts-pane{width:400px;flex-shrink:0;overflow:auto;background:#f3f5f9;border-left:1px solid var(--line);padding:12px;color:var(--ink)}
+.chart-card{background:#fff;border-radius:10px;box-shadow:0 1px 4px rgba(0,0,0,.1);padding:10px 12px;margin-bottom:12px;color:#1d2333}
+.chart-head{display:flex;align-items:center;gap:6px}.chart-head b{flex:1;font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.chart-head select{border:1px solid var(--line);border-radius:6px;padding:2px 4px;background:#fff;color:#1d2333}
+.chart-svg{width:100%;height:auto;display:block;margin-top:6px}
+.chart-range{font-size:11px;color:#6a7186}
+.ml{font-size:13px;color:var(--mute);display:block}
+.ctypes{display:flex;gap:8px;margin:6px 0 14px}
+.ctype{flex:1;border:1px solid var(--line);background:#fff;border-radius:8px;padding:10px 6px;cursor:pointer;color:#1d2333}
+.ctype.on{border-color:var(--sheets);background:#e3f5ea;font-weight:600}
+.share-list{display:flex;flex-direction:column;gap:8px;margin:8px 0 14px}
+.share-opt{display:flex;align-items:center;gap:12px;text-align:left;border:1px solid var(--line);background:transparent;color:inherit;border-radius:10px;padding:10px 12px;cursor:pointer}
+.share-opt:hover{background:rgba(47,111,237,.08)}.share-opt span{font-size:22px}.share-opt b{display:block}.share-opt small{color:var(--mute)}
+@media (max-width:760px){
+  .sheet-body{flex-direction:column}
+  .charts-pane{width:auto;max-height:45%;border-left:0;border-top:1px solid var(--line)}
+  .get-app{margin-top:-6px}
+}
+@media print{ .p-charts{margin-top:16px;display:flex;flex-wrap:wrap;gap:16px} .p-chart{width:48%;break-inside:avoid;font-family:Inter,sans-serif} .p-chart svg{color:#1d2333} }
+/* dark mode */
+body.dark{--line:#2c3448;--ink:#e6e9f2;--mute:#9aa3b8;--bg:#0d111a;background:#0d111a}
+body.dark .ribbon,body.dark .fbar{background:#161b26}
+body.dark .rb{color:#e6e9f2}body.dark .rb:hover{background:#232a3b}body.dark .rb.on{background:#24345e;color:#9dbcff}
+body.dark .rb.primary{color:#fff}
+body.dark select,body.dark .fbar input,body.dark .modal input,body.dark .modal textarea{background:#1d2333;color:#e6e9f2;border-color:#2c3448}
+body.dark .write-wrap{background:#0d111a}
+body.dark .page{color:#1d2333}
+body.dark .grid-wrap{background:#141925}
+body.dark table.grid th{background:#1d2333;color:#9aa3b8;border-color:#2c3448}
+body.dark table.grid td{border-color:#262d3d;color:#e6e9f2}
+body.dark table.grid td.sel{background:#13301f}body.dark table.grid td.inrange{background:#102619}
+body.dark th.hl{background:#173826!important;color:#5fd59a!important}
+body.dark .charts-pane{background:#0f131c}
+body.dark .chart-card{background:#1b2130;color:#e6e9f2}body.dark .chart-head select{background:#1d2333;color:#e6e9f2}
+body.dark .stage{background:#0d111a}body.dark .thumbs{background:#131824}
+body.dark .modal{background:#1b2130;color:#e6e9f2}
+body.dark .btn{background:#232a3b;color:#e6e9f2;border-color:#2c3448}body.dark .btn.pri{background:var(--accent);color:#fff}
+body.dark .ctype{background:#232a3b;color:#e6e9f2}body.dark .ctype.on{background:#173826}
+body.dark .home{background:radial-gradient(1200px 500px at 70% -10%,#1e2850 0%,#0a0f22 55%)}
+body.dark .tile,body.dark .tpl,body.dark .recent{background:#1b2130;color:#e6e9f2}
+body.dark .tile p{color:#9aa3b8}body.dark .tbody{color:#e6e9f2}
+body.dark .file{border-color:#2c3448}body.dark .file:hover{background:#232a3b}body.dark .fbtn{color:#e6e9f2}body.dark .fbtn:hover{background:#2a3245}
+body.dark .doc-title{color:#fff}
 </style>
 </head>
 <body>
@@ -200,6 +254,7 @@ th.hl{background:#d6efe1!important;color:var(--sheets)!important;font-weight:600
   <input class="doc-title hidden" id="docTitle" value="Untitled">
   <div class="spacer"></div>
   <span class="saved hidden" id="savedLbl">Saved</span>
+  <button class="topbtn" id="themeBtn" title="Dark mode">🌙</button>
 </div>
 
 <!-- HOME -->
@@ -207,6 +262,7 @@ th.hl{background:#d6efe1!important;color:var(--sheets)!important;font-weight:600
   <div class="home-inner">
     <h1>Welcome to Kepler Office</h1>
     <p class="lead">Write documents, crunch numbers and build presentations — free, on any device.</p>
+    <a class="get-app" id="getApp" href="https://github.com/keplerdeskadmin-cpu/kepler-office/releases/latest/download/KeplerOffice.apk"><span>📱</span><div><b>Get the Android app</b><small>Free · works offline</small></div></a>
     <h2 class="sec">Start new</h2>
     <div class="tiles">
       <button class="tile" data-new="write"><div class="ic" style="background:var(--write)">W</div><h3>Kepler Write</h3><p>Blank document — formatting, headings, lists, tables and images.</p></button>
@@ -215,7 +271,7 @@ th.hl{background:#d6efe1!important;color:var(--sheets)!important;font-weight:600
     </div>
     <h2 class="sec">Start from a template</h2>
     <div class="tpls" id="tpls"></div>
-    <h2 class="sec">My files</h2>
+    <div class="sec-row"><h2 class="sec">My files</h2><div><button class="hbtn" id="backupBtn" title="Save all files to one backup file">💾 Backup</button><button class="hbtn" id="restoreBtn" title="Load files from a backup file">♻️ Restore</button></div></div>
     <div class="recent" id="recent"></div>
     <div class="home-foot">Your files are saved automatically on this device. 100% free — no sign-up required.</div>
   </div>
@@ -229,6 +285,7 @@ th.hl{background:#d6efe1!important;color:var(--sheets)!important;font-weight:600
       <button class="rb" data-act="open" title="Open file (.html/.txt)">📂 Open</button>
       <button class="rb" data-act="export" title="Download / copy">⬇ Export</button>
       <button class="rb" data-act="pdf" title="Save as PDF or print">📄 PDF</button>
+      <button class="rb" data-act="share" title="Share">📤 Share</button>
     </div>
     <div class="grp">
       <button class="rb" data-cmd="undo" title="Undo (Ctrl+Z)">↶</button>
@@ -288,6 +345,7 @@ th.hl{background:#d6efe1!important;color:var(--sheets)!important;font-weight:600
       <button class="rb" data-sact="open" title="CSV import">📂 Import CSV</button>
       <button class="rb" data-sact="export" title="Export as CSV">⧉ Export CSV</button>
       <button class="rb" data-sact="pdf" title="Save as PDF or print">📄 PDF</button>
+      <button class="rb" data-sact="share" title="Share">📤 Share</button>
     </div>
     <div class="grp">
       <button class="rb" data-sfmt="b" title="Bold"><b>B</b></button>
@@ -305,12 +363,13 @@ th.hl{background:#d6efe1!important;color:var(--sheets)!important;font-weight:600
     </div>
     <div class="grp">
       <button class="rb" data-sact="sum" title="AutoSum">Σ AutoSum</button>
+      <button class="rb" data-sact="chart" title="Insert chart (select data first)">📊 Chart</button>
       <button class="rb" data-sact="clear" title="Clear">⌫ Clear</button>
       <button class="rb" data-sact="sortA" title="Column A→Z">⇅ Sort</button>
     </div>
   </div>
   <div class="fbar"><input class="ref" id="sRef" readonly value="A1"><span class="fx">fx</span><input class="formula" id="sFormula" placeholder="Enter a value or formula, e.g. =SUM(A1:A5)"></div>
-  <div class="grid-wrap" id="gridWrap"><table class="grid" id="grid"></table></div>
+  <div class="sheet-body"><div class="grid-wrap" id="gridWrap"><table class="grid" id="grid"></table></div><div class="charts-pane hidden" id="chartsPane"></div></div>
   <div class="status" id="sStatus"><span id="sStat">Ready</span><span class="spacer"></span><span>Kepler Sheets</span></div>
 </section>
 
@@ -336,6 +395,7 @@ th.hl{background:#d6efe1!important;color:var(--sheets)!important;font-weight:600
     </div>
     <div class="grp">
       <button class="rb" data-pact="pdf" title="Save as PDF or print">📄 PDF</button>
+      <button class="rb" data-pact="share" title="Share">📤 Share</button>
       <button class="rb primary" data-pact="present">▶ Present</button>
     </div>
   </div>
@@ -454,6 +514,7 @@ $$('#wRibbon [data-act]').forEach(b=>{ b.onmousedown=e=>e.preventDefault(); b.on
   if(a==='open') pickFile('.html,.htm,.txt,.md', (txt,name)=>{ const html = /\.html?$/i.test(name) ? (new DOMParser().parseFromString(txt,'text/html').body.innerHTML) : txt.split(/\n/).map(l=>`<p>${esc(l)||'<br>'}</p>`).join(''); newFile('write', name.replace(/\.[^.]+$/,''), {html}); toast(name+' opened'); });
   if(a==='export') modal({title:'Document export (HTML)', text:`<!DOCTYPE html><html><head><meta charset="utf-8"><title>${esc($('#docTitle').value)}</title></head><body${page.dir==='rtl'?' dir="rtl"':''}>${page.innerHTML}</body></html>`, okText:'Copy', copy:true, dl:{name:safeName()+'.html', type:'text/html'}});
   if(a==='pdf') printNow('write');
+  if(a==='share') openShare('write');
   if(a==='table') modal({title:'Insert table', fields:[{label:'Rows',value:'3',type:'number'},{label:'Columns',value:'3',type:'number'}], okText:'Insert', onOk:([r,c])=>{
     r=Math.max(1,Math.min(50,+r||3)); c=Math.max(1,Math.min(12,+c||3));
     let h='<table>'; for(let i=0;i<r;i++){ h+='<tr>'; for(let j=0;j<c;j++) h+= i===0?'<th><br></th>':'<td><br></td>'; h+='</tr>'; } h+='</table><p><br></p>';
@@ -475,7 +536,7 @@ const SAMPLE_CELLS = {
     A4:{v:'Bag'}, B4:{v:'1'}, C4:{v:'1200'}, D4:{v:'=B4*C4'},
     A6:{v:'Grand Total',b:1}, D6:{v:'=SUM(D2:D4)',b:1,bg:'#fff59d'}
 };
-function loadSheets(d){ cells=d.cells||{}; sel={c:0,r:0}; anchor=null; editing=null; }
+function loadSheets(d){ cells=d.cells||{}; charts=d.charts||[]; sel={c:0,r:0}; anchor=null; editing=null; }
 let sel={c:0,r:0}, anchor=null, editing=null;
 const saveCells = debounce(()=>flush('sheets'), 400);
 const F = {
@@ -555,9 +616,10 @@ function renderGrid(){
     td.textContent=fmt(v,cell);
     td.className = (typeof v==='number'?'num':'') + (typeof v==='string'&&v.startsWith('#')?' err':'');
     td.style.fontWeight=cell?.b?'700':''; td.style.fontStyle=cell?.i?'italic':'';
-    td.style.background=cell?.bg||''; td.style.color=cell?.fc||''; td.style.textAlign=cell?.al||'';
+    td.style.background=cell?.bg||''; td.style.color=cell?.fc||(cell?.bg?'#1d2333':''); td.style.textAlign=cell?.al||'';
   });
   paintSel();
+  renderCharts();
 }
 function rangeBounds(){ const a=anchor||sel; return {c1:Math.min(a.c,sel.c),c2:Math.max(a.c,sel.c),r1:Math.min(a.r,sel.r),r2:Math.max(a.r,sel.r)}; }
 function selIds(){ const b=rangeBounds(), ids=[]; for(let r=b.r1;r<=b.r2;r++) for(let c=b.c1;c<=b.c2;c++) ids.push(colName(c)+(r+1)); return ids; }
@@ -648,6 +710,8 @@ $$('[data-sact]').forEach(b=>b.onclick=()=>{
   if(a==='new') newFile('sheets');
   if(a==='open') pickFile('.csv,.tsv,.txt',(t,name)=>{ const c2={}; parseCSV(t.replace(/\t/g,',')).slice(0,ROWS).forEach((row,r)=>row.slice(0,COLS).forEach((v,c)=>{ if(v!=='') c2[colName(c)+(r+1)]={v}; })); newFile('sheets', name.replace(/\.[^.]+$/,''), {cells:c2}); toast(name+' imported'); });
   if(a==='pdf') { printNow('sheets'); return; }
+  if(a==='share') { openShare('sheets'); return; }
+  if(a==='chart') { chartDialog(null); return; }
   if(a==='export') modal({title:'CSV export', text:toCSV(), okText:'Copy', copy:true, dl:{name:safeName()+'.csv', type:'text/csv'}});
   if(a==='clear'){ selIds().forEach(id=>delete cells[id]); saveCells(); renderGrid(); }
   if(a==='sum'){
@@ -718,6 +782,7 @@ $$('[data-pact]').forEach(b=>{ b.onmousedown=e=>e.preventDefault(); b.onclick=()
   if(a==='img'){ pickFile('image/*', url=>{ S[cur].body=(S[cur].body||'')+`<div><img src="${url}" style="max-height:300px;max-width:100%;border-radius:8px"></div>`; saveDeck(); renderSlides(); }, true); return; }
   if(a==='present'){ present(); return; }
   if(a==='pdf'){ printNow('slides'); return; }
+  if(a==='share'){ openShare('slides'); return; }
   saveDeck(); renderSlides();
 };});
 function present(){
@@ -750,7 +815,7 @@ function blank(app){
 }
 function snapshot(app){
   if(app==='write') return {html:page.innerHTML, rtl:page.dir==='rtl'};
-  if(app==='sheets') return {cells};
+  if(app==='sheets') return {cells, charts};
   return {deck};
 }
 function flush(app){
@@ -823,7 +888,9 @@ function sheetPrintHTML(){
   for(let r=1;r<=maxR;r++){ h+='<tr>'; for(let c=0;c<maxC;c++){ const id=colName(c)+r, cell=cells[id]||{}, v=evalId(id);
     const st=[cell.b?'font-weight:700':'', cell.i?'font-style:italic':'', cell.bg?'background:'+cell.bg:'', cell.fc?'color:'+cell.fc:'', 'text-align:'+(cell.al||(typeof v==='number'?'right':'left'))].filter(Boolean).join(';');
     h+=`<td style="${st}">${esc(fmt(v,cell))}</td>`; } h+='</tr>'; }
-  return h+'</table>';
+  h+='</table>';
+  if(charts.length) h+='<div class="p-charts">'+charts.map(ch=>`<div class="p-chart"><b>${esc(ch.title||'')}</b>${chartSVG(ch)}</div>`).join('')+'</div>';
+  return h;
 }
 function printNow(app){
   flush(app);
@@ -854,7 +921,7 @@ const TEMPLATES = [
    A12:{v:'Transport'}, B12:{v:'5000',n:PKR}, A13:{v:'Mobile & internet'}, B13:{v:'2500',n:PKR}, A14:{v:'Other'}, B14:{v:'5000',n:PKR},
    A15:{v:'Total Expenses',b:1}, B15:{v:'=SUM(B9:B14)',b:1,n:PKR},
    A17:{v:'Savings',b:1,bg:'#fff59d'}, B17:{v:'=B6-B15',b:1,bg:'#fff59d',n:PKR},
-   A18:{v:'Savings %'}, B18:{v:'=B17/B6',n:'pct'} }}},
+   A18:{v:'Savings %'}, B18:{v:'=B17/B6',n:'pct'} }, charts:[{type:'pie', range:'A9:B14', title:'Where the money goes'}]}},
  {app:'sheets', icon:'🧾', name:'Invoice', data:{cells:{
    A1:{v:'INVOICE',b:1,fc:'#1e9e63'}, A2:{v:'Your Business Name'}, A3:{v:'Invoice #'}, B3:{v:'INV-001'}, A4:{v:'Date'}, B4:{v:'=TODAY()'},
    A6:{v:'Bill To',b:1}, B6:{v:'Customer Name'},
@@ -873,7 +940,7 @@ const TEMPLATES = [
      c['F'+r]={v:`=SUM(B${r}:E${r})`}; c['G'+r]={v:`=F${r}/400`,n:'pct'};
      c['H'+r]={v:`=IF(G${r}>=0.8,"A",IF(G${r}>=0.6,"B",IF(G${r}>=0.4,"C","F")))`,al:'center',b:1}; });
    c.A10={v:'Class average',b:1}; c.F10={v:'=AVERAGE(F4:F8)',b:1,n:'2'}; c.G10={v:'=F10/400',b:1,n:'pct'};
-   return c; })()}},
+   return c; })(), charts:[{type:'bar', range:'A3:E8', title:'Marks by subject'}]}},
  {app:'slides', icon:'🏫', name:'School Project', data:{deck:{theme:'ocean', slides:[
    {layout:'title', title:'My School Project', body:'Student Name · Class · School Name'},
    {layout:'content', title:'Introduction', body:'<ul><li>What is this project about?</li><li>Why did you choose this topic?</li><li>What will you explain today?</li></ul>'},
@@ -891,6 +958,158 @@ const TEMPLATES = [
    {layout:'title', title:'Thank You', body:'you@email.com · +92 300 0000000'} ]}}}
 ];
 
+/* ================= Charts (Sheets) ================= */
+let charts = [];
+const CHART_COLORS=['#2f6fed','#1e9e63','#e8692c','#9c27b0','#f2b705','#00a6a6','#d81b60','#6d4c41'];
+function parseRange(r){ const m=/^\s*([A-Z])(\d+)\s*:\s*([A-Z])(\d+)\s*$/i.exec(r||''); if(!m) return null;
+  const c1=m[1].toUpperCase().charCodeAt(0)-65, c2=m[3].toUpperCase().charCodeAt(0)-65, r1=+m[2]-1, r2=+m[4]-1;
+  return {c1:Math.min(c1,c2),c2:Math.max(c1,c2),r1:Math.min(r1,r2),r2:Math.max(r1,r2)}; }
+function chartData(ch){
+  const b=parseRange(ch.range); if(!b) return null;
+  const val=(c,r)=>evalId(colName(c)+(r+1));
+  const numeric=v=>typeof v==='number';
+  let r0=b.r1, c0=b.c1;
+  const headerRow = [...Array(b.c2-b.c1+1)].some((_,i)=>{ const v=val(b.c1+i,b.r1); return v!=='' && !numeric(v); }) && b.r2>b.r1;
+  const labelCol = [...Array(b.r2-b.r1+1)].some((_,i)=>{ const v=val(b.c1,b.r1+i); return v!=='' && !numeric(v); }) && b.c2>b.c1;
+  if(headerRow) r0++; if(labelCol) c0++;
+  const labels=[]; for(let r=r0;r<=b.r2;r++) labels.push(labelCol? String(val(b.c1,r)) : String(r+1));
+  const series=[]; for(let c=c0;c<=b.c2;c++){ series.push({name: headerRow? String(val(c,b.r1)) : colName(c), values: labels.map((_,i)=>{ const v=val(c,r0+i); return numeric(v)?v:0; })}); }
+  return {labels, series};
+}
+function niceMax(v){ if(v<=0) return 1; const p=10**Math.floor(Math.log10(v)); const n=v/p; return (n<=1?1:n<=2?2:n<=5?5:10)*p; }
+function shortNum(v){ const a=Math.abs(v); return a>=1e6?(v/1e6).toFixed(1).replace(/\.0$/,'')+'M':a>=1e3?(v/1e3).toFixed(1).replace(/\.0$/,'')+'k':String(+v.toFixed(2)); }
+function chartSVG(ch){
+  const d=chartData(ch); const W=480,H=300;
+  if(!d||!d.labels.length||!d.series.length) return `<svg viewBox="0 0 ${W} ${H}" class="chart-svg"><text x="${W/2}" y="${H/2}" text-anchor="middle" fill="currentColor" opacity=".6" font-size="14">No data in ${esc(ch.range)}</text></svg>`;
+  let s=`<svg viewBox="0 0 ${W} ${H}" class="chart-svg" font-family="Inter,sans-serif" font-size="13">`;
+  if(ch.type==='pie'){
+    const vals=d.series[0].values.map(v=>Math.max(0,v)), tot=vals.reduce((a,b)=>a+b,0)||1;
+    const cx=128,cy=150,R=118; let a0=-Math.PI/2;
+    vals.forEach((v,i)=>{ const a1=a0+v/tot*Math.PI*2, large=(a1-a0)>Math.PI?1:0, col=CHART_COLORS[i%CHART_COLORS.length];
+      if(v/tot>0.9999) s+=`<circle cx="${cx}" cy="${cy}" r="${R}" fill="${col}"/>`;
+      else if(v>0) s+=`<path d="M${cx},${cy} L${cx+R*Math.cos(a0)},${cy+R*Math.sin(a0)} A${R},${R} 0 ${large} 1 ${cx+R*Math.cos(a1)},${cy+R*Math.sin(a1)} Z" fill="${col}" stroke="#fff" stroke-width="1.5"/>`;
+      a0=a1; });
+    d.labels.forEach((l,i)=>{ if(i>11) return; const y=40+i*22; s+=`<rect x="262" y="${y-10}" width="12" height="12" rx="2" fill="${CHART_COLORS[i%CHART_COLORS.length]}"/><text x="280" y="${y}" fill="currentColor">${esc(l.length>17?l.slice(0,16)+'…':l)} <tspan font-weight="700">${Math.round(vals[i]/tot*100)}%</tspan></text>`; });
+    return s+'</svg>';
+  }
+  const all=d.series.flatMap(x=>x.values), mx=niceMax(Math.max(0,...all)), mn=Math.min(0,...all)<0?-niceMax(-Math.min(...all)):0;
+  const L=52,R=12,T=14,B=d.series.length>1?62:42, pw=W-L-R, ph=H-T-B, y=v=>T+ph-(v-mn)/(mx-mn)*ph;
+  for(let i=0;i<=4;i++){ const v=mn+(mx-mn)*i/4, yy=y(v); s+=`<line x1="${L}" x2="${W-R}" y1="${yy}" y2="${yy}" stroke="currentColor" opacity=".12"/><text x="${L-6}" y="${yy+4}" text-anchor="end" fill="currentColor" opacity=".7">${shortNum(v)}</text>`; }
+  const n=d.labels.length, step=pw/n;
+  d.labels.forEach((l,i)=>{ if(n>12 && i%Math.ceil(n/12)) return; s+=`<text x="${L+step*i+step/2}" y="${T+ph+16}" text-anchor="middle" fill="currentColor" opacity=".8">${esc(l.length>9?l.slice(0,8)+'…':l)}</text>`; });
+  if(ch.type==='line'){
+    d.series.forEach((se,k)=>{ const col=CHART_COLORS[k%CHART_COLORS.length], pts=se.values.map((v,i)=>`${L+step*i+step/2},${y(v)}`).join(' ');
+      s+=`<polyline points="${pts}" fill="none" stroke="${col}" stroke-width="2.5" stroke-linejoin="round"/>`+se.values.map((v,i)=>`<circle cx="${L+step*i+step/2}" cy="${y(v)}" r="3.5" fill="${col}"/>`).join(''); });
+  } else {
+    const gw=step*0.72, bw=gw/d.series.length;
+    d.series.forEach((se,k)=>se.values.forEach((v,i)=>{ const x=L+step*i+(step-gw)/2+bw*k, y0=y(0), yv=y(v);
+      s+=`<rect x="${x}" y="${Math.min(y0,yv)}" width="${Math.max(1,bw-2)}" height="${Math.abs(y0-yv)}" rx="2" fill="${CHART_COLORS[k%CHART_COLORS.length]}"/>`; }));
+  }
+  s+=`<line x1="${L}" x2="${W-R}" y1="${y(0)}" y2="${y(0)}" stroke="currentColor" opacity=".4"/>`;
+  if(d.series.length>1){ let x=L; d.series.forEach((se,k)=>{ s+=`<rect x="${x}" y="${H-16}" width="11" height="11" rx="2" fill="${CHART_COLORS[k%CHART_COLORS.length]}"/><text x="${x+15}" y="${H-7}" fill="currentColor">${esc(se.name.slice(0,14))}</text>`; x+=Math.min(140, 34+se.name.slice(0,14).length*8); }); }
+  return s+'</svg>';
+}
+function renderCharts(){
+  const pane=$('#chartsPane'); if(!pane) return;
+  pane.classList.toggle('hidden', !charts.length);
+  pane.innerHTML = charts.map((ch,i)=>`<div class="chart-card"><div class="chart-head"><b>${esc(ch.title||'Chart')}</b>
+    <select data-ctype="${i}"><option value="bar"${ch.type==='bar'?' selected':''}>Bar</option><option value="line"${ch.type==='line'?' selected':''}>Line</option><option value="pie"${ch.type==='pie'?' selected':''}>Pie</option></select>
+    <button class="fbtn" data-cedit="${i}" title="Edit">✎</button><button class="fbtn" data-cdel="${i}" title="Delete">🗑</button></div>
+    ${chartSVG(ch)}<div class="chart-range">Data: ${esc(ch.range)}</div></div>`).join('');
+  $$('[data-ctype]').forEach(s=>s.onchange=()=>{ charts[+s.dataset.ctype].type=s.value; saveCells(); renderCharts(); });
+  $$('[data-cdel]').forEach(b=>b.onclick=()=>{ charts.splice(+b.dataset.cdel,1); saveCells(); renderCharts(); });
+  $$('[data-cedit]').forEach(b=>b.onclick=()=>chartDialog(+b.dataset.cedit));
+}
+function chartDialog(idx){
+  const ch = idx!=null ? charts[idx] : null;
+  const b=rangeBounds();
+  const defRange = ch ? ch.range : ((b.r2>b.r1||b.c2>b.c1) ? `${colName(b.c1)}${b.r1+1}:${colName(b.c2)}${b.r2+1}` : 'A1:B5');
+  const root=$('#modalRoot');
+  root.innerHTML=`<div class="modal-bg"><div class="modal"><h3>${ch?'Edit chart':'Insert chart'}</h3>
+    <label class="ml">Chart type</label>
+    <div class="ctypes">${['bar','line','pie'].map(t=>`<button class="ctype${(ch?ch.type:'bar')===t?' on':''}" data-t="${t}">${({bar:'📊 Bar',line:'📈 Line',pie:'🥧 Pie'})[t]}</button>`).join('')}</div>
+    <label class="ml">Data range (first column = labels, first row = names)</label><input id="cRange" value="${esc(defRange)}">
+    <label class="ml">Title</label><input id="cTitle" value="${esc(ch?ch.title:'Chart')}">
+    <div class="acts"><button class="btn" id="mCancel">Cancel</button><button class="btn pri" id="mOk">${ch?'Save':'Insert'}</button></div></div></div>`;
+  let type=ch?ch.type:'bar';
+  $$('.ctype').forEach(x=>x.onclick=()=>{ type=x.dataset.t; $$('.ctype').forEach(y=>y.classList.toggle('on',y===x)); });
+  $('#mCancel').onclick=()=>root.innerHTML='';
+  $('#mOk').onclick=()=>{ const range=$('#cRange').value.trim().toUpperCase(); if(!parseRange(range)){ toast('Range should look like A1:B6'); return; }
+    const obj={type, range, title:$('#cTitle').value.trim()};
+    if(ch) Object.assign(ch,obj); else charts.push(obj);
+    root.innerHTML=''; saveCells(); renderCharts(); if(!ch) toast('Chart added'); };
+}
+
+/* ================= Share ================= */
+const APK_URL='https://github.com/keplerdeskadmin-cpu/kepler-office/releases/latest/download/KeplerOffice.apk';
+function slidesText(){ const tmp=document.createElement('div'); return deck.slides.map((s,i)=>{ tmp.innerHTML=s.title||''; const t=tmp.innerText; tmp.innerHTML=(s.body||'').replace(/<li>/g,'<li>• ').replace(/<\/li>/g,'</li>\n'); return `${i+1}. ${t}\n${tmp.innerText.trim()}`; }).join('\n\n'); }
+function slidesHTMLFile(t){
+  const css=document.querySelector('style').textContent;
+  return `<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(t)}</title><style>${css}
+body{background:#222;height:auto;padding:16px}.slide-frame{margin:0 auto 16px}</style></head><body>
+${deck.slides.map(s=>`<div class="slide-frame">${slideHTML(s,false)}</div>`).join('\n')}
+<script>function f(){document.querySelectorAll('.slide-frame').forEach(fr=>{fr.firstElementChild.style.transform='scale('+fr.clientWidth/960+')'})}addEventListener('resize',f);f();<\/script></body></html>`;
+}
+function sharePayload(app){
+  const t=$('#docTitle').value||'Document', n=safeName();
+  if(app==='write') return {name:n+'.doc', mime:'application/msword', text:page.innerText.trim(),
+    content:`<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word"><head><meta charset="utf-8"><title>${esc(t)}</title></head><body${page.dir==='rtl'?' dir="rtl"':''}>${page.innerHTML}</body></html>`};
+  if(app==='sheets'){ const csv=toCSV(); return {name:n+'.csv', mime:'text/csv', content:csv, text:csv}; }
+  return {name:n+'.html', mime:'text/html', content:slidesHTMLFile(t), text:slidesText()};
+}
+function openExternal(url){ if(window.KeplerAndroid && KeplerAndroid.openUrl){ KeplerAndroid.openUrl(url); return; } const a=document.createElement('a'); a.href=url; a.target='_blank'; a.rel='noopener'; document.body.appendChild(a); a.click(); a.remove(); }
+async function shareFile(p){
+  if(window.KeplerAndroid && KeplerAndroid.shareFile){ KeplerAndroid.shareFile(p.name, p.content, p.mime); return; }
+  try{ const f=new File([p.content], p.name, {type:p.mime}); if(navigator.canShare && navigator.canShare({files:[f]})){ await navigator.share({files:[f], title:p.name}); return; } }catch(e){ if(e && e.name==='AbortError') return; }
+  download(p.name, p.content, p.mime); toast('File saved — attach it in WhatsApp or email');
+}
+function openShare(app){
+  flush(app);
+  const p=sharePayload(app), t=$('#docTitle').value||'Document';
+  const kind={write:'Word document (.doc)', sheets:'Excel-friendly file (.csv)', slides:'Web page (.html)'}[app];
+  const root=$('#modalRoot');
+  root.innerHTML=`<div class="modal-bg"><div class="modal"><h3>Share “${esc(t)}”</h3>
+    <div class="share-list">
+      <button class="share-opt" data-s="file"><span>📎</span><div><b>Share as file</b><small>${kind} — WhatsApp, email, Drive…</small></div></button>
+      <button class="share-opt" data-s="wa"><span>💬</span><div><b>WhatsApp</b><small>Send the text in a message</small></div></button>
+      <button class="share-opt" data-s="mail"><span>✉️</span><div><b>Email</b><small>Open your email app with the text</small></div></button>
+      <button class="share-opt" data-s="pdf"><span>📄</span><div><b>PDF</b><small>Save as PDF, then share it</small></div></button>
+    </div>
+    <div class="acts"><button class="btn" id="mCancel">Close</button></div></div></div>`;
+  $('#mCancel').onclick=()=>root.innerHTML='';
+  $$('.share-opt').forEach(b=>b.onclick=()=>{ const s=b.dataset.s; root.innerHTML='';
+    const body=(t+'\n\n'+p.text).slice(0,1800);
+    if(s==='file') shareFile(p);
+    if(s==='wa'){ if(window.KeplerAndroid && KeplerAndroid.shareText) KeplerAndroid.shareText(body); else openExternal('https://wa.me/?text='+encodeURIComponent(body)); }
+    if(s==='mail') openExternal('mailto:?subject='+encodeURIComponent(t)+'&body='+encodeURIComponent(body));
+    if(s==='pdf') printNow(app);
+  });
+}
+
+/* ================= Dark mode ================= */
+function applyTheme(dark){ document.body.classList.toggle('dark', dark); $('#themeBtn').textContent = dark ? '☀️' : '🌙'; $('#themeBtn').title = dark ? 'Light mode' : 'Dark mode'; }
+$('#themeBtn').onclick=()=>{ const d=!document.body.classList.contains('dark'); store.set('theme', d?'dark':'light'); applyTheme(d); };
+
+/* ================= Backup / Restore ================= */
+function doBackup(){
+  ['write','sheets','slides'].forEach(a=>{ if(loaded[a]) flush(a); });
+  const data={kepler:'backup', version:1, created:new Date().toISOString(), files:files.map(f=>({...f, data:store.get('file.'+f.id, null)}))};
+  download('kepler-backup-'+new Date().toISOString().slice(0,10)+'.kepler', JSON.stringify(data), 'application/json');
+}
+function doRestore(){
+  pickFile('.kepler,.json,application/json,*/*', txt=>{
+    let b; try{ b=JSON.parse(txt); }catch(e){ toast('This is not a Kepler backup file'); return; }
+    if(!b || b.kepler!=='backup' || !Array.isArray(b.files)){ toast('This is not a Kepler backup file'); return; }
+    let added=0, updated=0;
+    b.files.forEach(f=>{ if(!f || !APPS[f.app] || !f.data) return; const {data,...m}=f; const ex=meta(m.id);
+      if(!ex){ files.push(m); store.set('file.'+m.id, data); added++; }
+      else if((m.updated||0)>(ex.updated||0)){ Object.assign(ex,m); store.set('file.'+m.id, data); if(loaded[m.app]===m.id) loaded[m.app]=null; updated++; } });
+    saveMeta(); renderHome(); toast(`Restored: ${added} new, ${updated} updated`);
+  });
+}
+$('#backupBtn').onclick=doBackup;
+$('#restoreBtn').onclick=doRestore;
+
 /* ================= Start ================= */
 (function init(){
   const saved=store.get('files', null);
@@ -901,6 +1120,8 @@ const TEMPLATES = [
     newFile('sheets', store.get('sheets.title', 'Shopping List'), {cells: store.get('sheets.cells', null) || SAMPLE_CELLS}, false);
     newFile('write', store.get('write.title', 'Welcome to Kepler Write'), {html: store.get('write.doc2', null) || DEFAULT_DOC, rtl: store.get('write.rtl', false)}, false);
   }
+  if(window.KeplerAndroid) $('#getApp').classList.add('hidden');
+  applyTheme(store.get('theme','light')==='dark');
   show(location.hash.slice(1));
 })();
 window.addEventListener('pagehide', ()=>{ ['write','sheets','slides'].forEach(a=>{ if(loaded[a]) flush(a); }); });
