@@ -40,8 +40,8 @@ jobs:
       - name: Publish download link (GitHub Release)
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v1.0.${{ github.run_number }}
-          name: Kepler Office v1.0.${{ github.run_number }}
+          tag_name: v1.1.${{ github.run_number }}
+          name: Kepler Office v1.1.${{ github.run_number }}
           make_latest: true
           files: KeplerOffice.apk
           body: |

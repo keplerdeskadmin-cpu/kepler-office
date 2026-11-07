@@ -125,7 +125,6 @@ th.hl{background:#d6efe1!important;color:var(--sheets)!important;font-weight:600
 .btn{border:1px solid var(--line);background:#fff;border-radius:8px;padding:7px 14px;cursor:pointer}
 .btn.pri{background:var(--accent);color:#fff;border-color:transparent}
 .toast{position:fixed;bottom:40px;left:50%;transform:translateX(-50%);background:var(--navy);color:#fff;padding:10px 18px;border-radius:8px;font-size:14px;z-index:300;box-shadow:0 8px 24px rgba(0,0,0,.3)}
-@media print{ .topbar,.ribbon,.status,section:not(#v-write){display:none!important} .write-wrap{height:auto;overflow:visible;padding:0} .page{box-shadow:none;max-width:none;min-height:0;padding:0} body{background:#fff} }
 .credit{margin-top:8px;font-size:12px;opacity:.5}
 
 /* flexible layout (desktop + mobile) */
@@ -137,16 +136,53 @@ th.hl{background:#d6efe1!important;color:var(--sheets)!important;font-weight:600
   .ribbon::-webkit-scrollbar{display:none}
   .ribbon .grp{flex-shrink:0}
   .topbar{gap:8px;padding:0 10px}
-  .brand span.bt,.app-name{display:none}
+  body.in-app .brand span.bt,.app-name{display:none}
   .doc-title{min-width:0;flex:1;width:100%}
   .saved{display:none}
   .page{padding:28px 20px;min-height:70vh;font-size:15px}
   .write-wrap{padding:12px 8px}
   .home{padding:32px 16px}.home h1{font-size:28px}
+  .home .tiles{gap:10px}
+  .home .tile{display:grid;grid-template-columns:44px 1fr;column-gap:14px;align-items:center;padding:12px 14px}
+  .home .tile .ic{grid-row:span 2;margin:0}
+  .home .tile h3{font-size:16px;margin:0}.home .tile p{font-size:12.5px}
+  .home h2.sec{margin:28px 0 10px}
+  .tpls{grid-template-columns:repeat(2,1fr);gap:10px}
   .slides-body{flex-direction:column-reverse}
   .thumbs{width:auto;height:96px;display:flex;gap:10px;overflow-x:auto;overflow-y:hidden;border-right:0;border-top:1px solid var(--line);padding:8px}
   .thumb{margin:0;flex:0 0 130px}
   .stage{padding:12px}
+}
+
+/* home sections */
+.home h2.sec{font-size:15px;font-weight:600;letter-spacing:.3px;text-transform:uppercase;opacity:.7;margin:40px 0 14px}
+.home .tile{padding:18px}.home .tile .ic{width:44px;height:44px;margin-bottom:12px;font-size:19px}
+.tpls{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
+.tpl{background:#fff;border:0;border-radius:12px;overflow:hidden;cursor:pointer;text-align:left;padding:0;box-shadow:0 6px 18px rgba(0,0,0,.25);transition:transform .15s}
+.tpl:hover{transform:translateY(-3px)}
+.tband{height:64px;display:grid;place-items:center;font-size:30px}
+.tbody{padding:10px 12px 12px;color:var(--ink)}.tbody b{display:block;font-size:14px}.tbody small{color:var(--mute);font-size:12px}
+.recent{background:#fff;border-radius:12px;overflow:hidden;color:var(--ink);box-shadow:0 6px 18px rgba(0,0,0,.25)}
+.file{display:flex;align-items:center;gap:12px;padding:12px 14px;border-bottom:1px solid var(--line);cursor:pointer}
+.file:last-child{border-bottom:0}.file:hover{background:#f5f7fc}
+.fic{width:34px;height:34px;border-radius:8px;color:#fff;font-weight:700;display:grid;place-items:center;flex-shrink:0}
+.fmeta{flex:1;min-width:0}.fname{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.fsub{font-size:12px;color:var(--mute)}
+.fbtn{border:0;background:transparent;font-size:16px;width:34px;height:34px;border-radius:8px;cursor:pointer}.fbtn:hover{background:#e9edf6}
+.empty{padding:20px;color:var(--mute);text-align:center}
+/* print / PDF */
+#printArea{display:none}
+@media print{
+  body>*:not(#printArea){display:none!important}
+  html,body{height:auto;background:#fff}
+  #printArea{display:block}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .p-write.page{box-shadow:none;max-width:none;min-height:0;padding:0;margin:0;font-size:12pt}
+  .p-title{font-family:Inter,sans-serif;margin:0 0 10px}
+  .p-sheet{border-collapse:collapse;font-size:10pt;font-family:Inter,sans-serif}
+  .p-sheet td{border:1px solid #c9ced9;padding:4px 8px;white-space:nowrap}
+  .p-slide{width:1280px;height:720px;position:relative;overflow:hidden;break-after:page;page-break-after:always}
+  .p-slide:last-child{break-after:auto;page-break-after:auto}
+  .p-slide .slide{transform:scale(1.33333);transform-origin:0 0}
 }
 </style>
 </head>
@@ -168,13 +204,18 @@ th.hl{background:#d6efe1!important;color:var(--sheets)!important;font-weight:600
 <section id="v-home" class="home">
   <div class="home-inner">
     <h1>Welcome to Kepler Office</h1>
-    <p class="lead">Write documents, crunch numbers and build presentations — all in your browser.</p>
+    <p class="lead">Write documents, crunch numbers and build presentations — free, on any device.</p>
+    <h2 class="sec">Start new</h2>
     <div class="tiles">
-      <button class="tile" data-go="write"><div class="ic" style="background:var(--write)">W</div><h3>Kepler Write</h3><p>A full document editor — formatting, headings, lists, tables and images.</p></button>
-      <button class="tile" data-go="sheets"><div class="ic" style="background:var(--sheets)">S</div><h3>Kepler Sheets</h3><p>Spreadsheets with formulas (SUM, AVERAGE, IF…), formatting and CSV import.</p></button>
-      <button class="tile" data-go="slides"><div class="ic" style="background:var(--slides)">P</div><h3>Kepler Slides</h3><p>Presentations with themes, layouts and full-screen present mode.</p></button>
+      <button class="tile" data-new="write"><div class="ic" style="background:var(--write)">W</div><h3>Kepler Write</h3><p>Blank document — formatting, headings, lists, tables and images.</p></button>
+      <button class="tile" data-new="sheets"><div class="ic" style="background:var(--sheets)">S</div><h3>Kepler Sheets</h3><p>Blank spreadsheet — formulas (SUM, AVERAGE, IF…) and formatting.</p></button>
+      <button class="tile" data-new="slides"><div class="ic" style="background:var(--slides)">P</div><h3>Kepler Slides</h3><p>Blank presentation — themes, layouts and present mode.</p></button>
     </div>
-    <div class="home-foot">Your work is saved automatically in this browser. 100% free — no sign-up required.</div>
+    <h2 class="sec">Start from a template</h2>
+    <div class="tpls" id="tpls"></div>
+    <h2 class="sec">My files</h2>
+    <div class="recent" id="recent"></div>
+    <div class="home-foot">Your files are saved automatically on this device. 100% free — no sign-up required.</div>
   </div>
 </section>
 
@@ -185,7 +226,7 @@ th.hl{background:#d6efe1!important;color:var(--sheets)!important;font-weight:600
       <button class="rb" data-act="new" title="New document">＋ New</button>
       <button class="rb" data-act="open" title="Open file (.html/.txt)">📂 Open</button>
       <button class="rb" data-act="export" title="Download / copy">⬇ Export</button>
-      <button class="rb" data-act="print" title="Print / PDF">🖨 Print</button>
+      <button class="rb" data-act="pdf" title="Save as PDF or print">📄 PDF</button>
     </div>
     <div class="grp">
       <button class="rb" data-cmd="undo" title="Undo (Ctrl+Z)">↶</button>
@@ -244,6 +285,7 @@ th.hl{background:#d6efe1!important;color:var(--sheets)!important;font-weight:600
       <button class="rb" data-sact="new">＋ New</button>
       <button class="rb" data-sact="open" title="CSV import">📂 Import CSV</button>
       <button class="rb" data-sact="export" title="Export as CSV">⧉ Export CSV</button>
+      <button class="rb" data-sact="pdf" title="Save as PDF or print">📄 PDF</button>
     </div>
     <div class="grp">
       <button class="rb" data-sfmt="b" title="Bold"><b>B</b></button>
@@ -291,6 +333,7 @@ th.hl{background:#d6efe1!important;color:var(--sheets)!important;font-weight:600
       <button class="rb" data-pact="img">🖼 Image</button>
     </div>
     <div class="grp">
+      <button class="rb" data-pact="pdf" title="Save as PDF or print">📄 PDF</button>
       <button class="rb primary" data-pact="present">▶ Present</button>
     </div>
   </div>
@@ -303,14 +346,19 @@ th.hl{background:#d6efe1!important;color:var(--sheets)!important;font-weight:600
 
 <input type="file" id="fileIn" class="hidden">
 <div id="modalRoot"></div>
+<div id="printArea"></div>
+<style id="pageStyle"></style>
 
 <script>
 /* ================= Utilities ================= */
 const $ = s => document.querySelector(s);
 const $$ = s => [...document.querySelectorAll(s)];
+const MEM = {};
+let quotaWarned=false;
 const store = {
-  get(k, d){ try{ const v = localStorage.getItem('kepler.'+k); return v==null ? d : JSON.parse(v); }catch(e){ return d; } },
-  set(k, v){ try{ localStorage.setItem('kepler.'+k, JSON.stringify(v)); flashSaved(); }catch(e){} }
+  get(k, d){ if(k in MEM) return JSON.parse(MEM[k]); try{ const v = localStorage.getItem('kepler.'+k); return v==null ? d : JSON.parse(v); }catch(e){ return d; } },
+  set(k, v){ const j=JSON.stringify(v); MEM[k]=j; try{ localStorage.setItem('kepler.'+k, j); flashSaved(); return true; }catch(e){ if(!quotaWarned){ quotaWarned=true; toast('Storage is full — delete some old files or large images'); } return false; } },
+  del(k){ delete MEM[k]; try{ localStorage.removeItem('kepler.'+k); }catch(e){} }
 };
 let savedT;
 function flashSaved(){ const l=$('#savedLbl'); l.textContent='Saved ✓'; clearTimeout(savedT); savedT=setTimeout(()=>l.textContent='Saved',1200); }
@@ -354,27 +402,29 @@ function show(view){
   $$('section[id^="v-"]').forEach(s=>s.classList.add('hidden'));
   $('#v-'+view).classList.remove('hidden');
   const inApp = view!=='home';
+  document.body.classList.toggle('in-app', inApp);
   ['#appName','#docTitle','#savedLbl'].forEach(s=>$(s).classList.toggle('hidden',!inApp));
   if(inApp){
     $('#appName').textContent='Kepler '+APPS[view].name;
     document.documentElement.style.setProperty('--accent', APPS[view].color);
-    $('#docTitle').value = store.get(view+'.title','Untitled '+APPS[view].name);
+    if(loaded[view]!==curId(view) || !loaded[view]) loadIntoApp(view);
+    $('#docTitle').value = (meta(loaded[view])||{}).title || ('Untitled '+APPS[view].name);
     if(view==='slides') renderSlides();
     if(view==='sheets') renderGrid();
-  }
+    if(view==='write') updCounts();
+  } else renderHome();
   document.title = inApp ? `${$('#docTitle').value} – Kepler ${APPS[view].name}` : 'Kepler Office';
 }
-$$('[data-go]').forEach(b=>b.onclick=()=>{ location.hash=b.dataset.go; });
+$$('[data-new]').forEach(b=>b.onclick=()=>newFile(b.dataset.new));
 $('#goHome').onclick=()=>{ location.hash=''; show('home'); };
 window.addEventListener('hashchange',()=>show(location.hash.slice(1)));
-$('#docTitle').oninput=e=>{ store.set(current+'.title', e.target.value); document.title=e.target.value+' – Kepler '+APPS[current].name; };
+$('#docTitle').oninput=e=>{ const m=meta(loaded[current]); if(m){ m.title=e.target.value; m.updated=Date.now(); saveMeta(); } document.title=e.target.value+' – Kepler '+APPS[current].name; };
 
 /* ================= WRITE ================= */
 const page=$('#page');
-const DEFAULT_DOC = `<h1>Welcome to Kepler Write</h1><p>This is your new document. Use the ribbon above for <b>bold</b>, <i>italic</i>, <span style="background:#ffeb3b">highlight</span>, headings, lists, tables and images.</p><ul><li>Your work is saved automatically</li><li>Press <b>↔ RTL</b> for right-to-left languages like Urdu or Arabic</li><li>Use Export to download your document, or Print to save it as a PDF</li></ul><p><br></p>`;
-page.innerHTML = store.get('write.doc2', DEFAULT_DOC);
-if(store.get('write.rtl',false)) page.dir='rtl';
-const saveDoc = debounce(()=>store.set('write.doc2', page.innerHTML), 500);
+const DEFAULT_DOC = `<h1>Welcome to Kepler Write</h1><p>This is your new document. Use the ribbon above for <b>bold</b>, <i>italic</i>, <span style="background:#ffeb3b">highlight</span>, headings, lists, tables and images.</p><ul><li>Your work is saved automatically</li><li>Press <b>↔ RTL</b> for right-to-left languages like Urdu or Arabic</li><li>Press <b>📄 PDF</b> to save or print your document</li><li>All your files are listed on the Home screen</li></ul><p><br></p>`;
+const saveDoc = debounce(()=>flush('write'), 500);
+function loadWrite(d){ page.innerHTML=d.html||'<p><br></p>'; page.dir=d.rtl?'rtl':'ltr'; $('#wRibbon [data-act="rtl"]').classList.toggle('on', page.dir==='rtl'); updCounts(); }
 function updCounts(){ const t=page.innerText.trim(); $('#wWords').textContent=(t?t.split(/\s+/).length:0)+' words'; $('#wChars').textContent=t.length+' characters'; }
 page.addEventListener('input',()=>{ saveDoc(); updCounts(); });
 updCounts();
@@ -398,10 +448,10 @@ function refreshState(){
 document.addEventListener('selectionchange',()=>{ if(current==='write'){ keepSel(); refreshState(); } });
 $$('#wRibbon [data-act]').forEach(b=>{ b.onmousedown=e=>e.preventDefault(); b.onclick=()=>{
   const a=b.dataset.act;
-  if(a==='new') modal({title:'Start a new document?', fields:[], okText:'Yes, create new', onOk:()=>{ page.innerHTML='<p><br></p>'; store.set('write.doc2',page.innerHTML); $('#docTitle').value='Untitled Write'; store.set('write.title','Untitled Write'); updCounts(); page.focus(); }});
-  if(a==='open') pickFile('.html,.htm,.txt,.md', (txt,name)=>{ page.innerHTML = /\.html?$/i.test(name) ? (new DOMParser().parseFromString(txt,'text/html').body.innerHTML) : txt.split(/\n/).map(l=>`<p>${esc(l)||'<br>'}</p>`).join(''); store.set('write.doc2',page.innerHTML); const t=name.replace(/\.[^.]+$/,''); $('#docTitle').value=t; store.set('write.title',t); updCounts(); toast(name+' opened'); });
+  if(a==='new') { newFile('write'); page.focus(); }
+  if(a==='open') pickFile('.html,.htm,.txt,.md', (txt,name)=>{ const html = /\.html?$/i.test(name) ? (new DOMParser().parseFromString(txt,'text/html').body.innerHTML) : txt.split(/\n/).map(l=>`<p>${esc(l)||'<br>'}</p>`).join(''); newFile('write', name.replace(/\.[^.]+$/,''), {html}); toast(name+' opened'); });
   if(a==='export') modal({title:'Document export (HTML)', text:`<!DOCTYPE html><html><head><meta charset="utf-8"><title>${esc($('#docTitle').value)}</title></head><body${page.dir==='rtl'?' dir="rtl"':''}>${page.innerHTML}</body></html>`, okText:'Copy', copy:true, dl:{name:safeName()+'.html', type:'text/html'}});
-  if(a==='print'){ if(window.KeplerAndroid){ KeplerAndroid.print($('#docTitle').value||'Document'); return; } try{ window.print(); }catch(e){ toast('Printing is blocked here'); } }
+  if(a==='pdf') printNow('write');
   if(a==='table') modal({title:'Insert table', fields:[{label:'Rows',value:'3',type:'number'},{label:'Columns',value:'3',type:'number'}], okText:'Insert', onOk:([r,c])=>{
     r=Math.max(1,Math.min(50,+r||3)); c=Math.max(1,Math.min(12,+c||3));
     let h='<table>'; for(let i=0;i<r;i++){ h+='<tr>'; for(let j=0;j<c;j++) h+= i===0?'<th><br></th>':'<td><br></td>'; h+='</tr>'; } h+='</table><p><br></p>';
@@ -409,25 +459,23 @@ $$('#wRibbon [data-act]').forEach(b=>{ b.onmousedown=e=>e.preventDefault(); b.on
   }});
   if(a==='image'){ keepSel(); pickFile('image/*', url=>{ restoreSel(); exec('insertHTML', `<img src="${url}" alt="">`); }, true); }
   if(a==='link'){ keepSel(); modal({title:'Insert link', fields:[{label:'URL',value:'https://'}], okText:'Insert', onOk:([u])=>{ restoreSel(); if(u) exec('createLink', u); }}); }
-  if(a==='rtl'){ page.dir = page.dir==='rtl' ? 'ltr' : 'rtl'; store.set('write.rtl', page.dir==='rtl'); b.classList.toggle('on', page.dir==='rtl'); }
+  if(a==='rtl'){ page.dir = page.dir==='rtl' ? 'ltr' : 'rtl'; saveDoc(); b.classList.toggle('on', page.dir==='rtl'); }
 };});
-$('#wRibbon [data-act="rtl"]').classList.toggle('on', page.dir==='rtl');
 
 /* ================= SHEETS ================= */
 const COLS=26, ROWS=60;
 const colName=i=>String.fromCharCode(65+i);
-let cells = store.get('sheets.cells', null);
-if(!cells){
-  cells = {
+let cells = {};
+const SAMPLE_CELLS = {
     A1:{v:'Item',b:1,bg:'#d6efe1'}, B1:{v:'Qty',b:1,bg:'#d6efe1'}, C1:{v:'Price',b:1,bg:'#d6efe1'}, D1:{v:'Total',b:1,bg:'#d6efe1'},
     A2:{v:'Notebook'}, B2:{v:'4'}, C2:{v:'150'}, D2:{v:'=B2*C2'},
     A3:{v:'Pen'}, B3:{v:'10'}, C3:{v:'30'}, D3:{v:'=B3*C3'},
     A4:{v:'Bag'}, B4:{v:'1'}, C4:{v:'1200'}, D4:{v:'=B4*C4'},
     A6:{v:'Grand Total',b:1}, D6:{v:'=SUM(D2:D4)',b:1,bg:'#fff59d'}
-  };
-}
+};
+function loadSheets(d){ cells=d.cells||{}; sel={c:0,r:0}; anchor=null; editing=null; }
 let sel={c:0,r:0}, anchor=null, editing=null;
-const saveCells = debounce(()=>store.set('sheets.cells', cells), 400);
+const saveCells = debounce(()=>flush('sheets'), 400);
 const F = {
   SUM:(...a)=>flat(a).reduce((s,x)=>s+num(x),0),
   AVERAGE:(...a)=>{ const n=flat(a).filter(isNum); return n.length? n.reduce((s,x)=>s+ +x,0)/n.length : 0; },
@@ -595,8 +643,9 @@ function parseCSV(t){
 }
 $$('[data-sact]').forEach(b=>b.onclick=()=>{
   const a=b.dataset.sact;
-  if(a==='new') modal({title:'Start a new spreadsheet?', okText:'Yes, create new', onOk:()=>{ cells={}; saveCells(); sel={c:0,r:0}; anchor=null; renderGrid(); }});
-  if(a==='open') pickFile('.csv,.tsv,.txt',(t,name)=>{ cells={}; parseCSV(t.replace(/\t/g,',')).slice(0,ROWS).forEach((row,r)=>row.slice(0,COLS).forEach((v,c)=>{ if(v!=='') cells[colName(c)+(r+1)]={v}; })); saveCells(); renderGrid(); const nm=name.replace(/\.[^.]+$/,''); $('#docTitle').value=nm; store.set('sheets.title',nm); toast(name+' imported'); });
+  if(a==='new') newFile('sheets');
+  if(a==='open') pickFile('.csv,.tsv,.txt',(t,name)=>{ const c2={}; parseCSV(t.replace(/\t/g,',')).slice(0,ROWS).forEach((row,r)=>row.slice(0,COLS).forEach((v,c)=>{ if(v!=='') c2[colName(c)+(r+1)]={v}; })); newFile('sheets', name.replace(/\.[^.]+$/,''), {cells:c2}); toast(name+' imported'); });
+  if(a==='pdf') { printNow('sheets'); return; }
   if(a==='export') modal({title:'CSV export', text:toCSV(), okText:'Copy', copy:true, dl:{name:safeName()+'.csv', type:'text/csv'}});
   if(a==='clear'){ selIds().forEach(id=>delete cells[id]); saveCells(); renderGrid(); }
   if(a==='sum'){
@@ -617,7 +666,8 @@ $$('[data-sact]').forEach(b=>b.onclick=()=>{
 });
 
 /* ================= SLIDES ================= */
-let deck = store.get('slides.deck2', null) || {
+let deck = {theme:'light', slides:[{layout:'title',title:'',body:''}]};
+const SAMPLE_DECK = {
   theme:'dark',
   slides:[
     {layout:'title', title:'Kepler Slides', body:'Create your first presentation'},
@@ -625,7 +675,8 @@ let deck = store.get('slides.deck2', null) || {
   ]
 };
 let cur=0;
-const saveDeck = debounce(()=>store.set('slides.deck2', deck), 400);
+const saveDeck = debounce(()=>flush('slides'), 400);
+function loadSlides(d){ deck=d.deck||{theme:'light',slides:[{layout:'title',title:'',body:''}]}; cur=0; }
 function slideHTML(s, editable){
   const ce=editable?'contenteditable="true"':'';
   return `<div class="slide theme-${deck.theme} layout-${s.layout}">
@@ -664,6 +715,7 @@ $$('[data-pact]').forEach(b=>{ b.onmousedown=e=>e.preventDefault(); b.onclick=()
   if(a==='down' && cur<S.length-1){ [S[cur+1],S[cur]]=[S[cur],S[cur+1]]; cur++; }
   if(a==='img'){ pickFile('image/*', url=>{ S[cur].body=(S[cur].body||'')+`<div><img src="${url}" style="max-height:300px;max-width:100%;border-radius:8px"></div>`; saveDeck(); renderSlides(); }, true); return; }
   if(a==='present'){ present(); return; }
+  if(a==='pdf'){ printNow('slides'); return; }
   saveDeck(); renderSlides();
 };});
 function present(){
@@ -683,8 +735,174 @@ function present(){
   draw();
 }
 
+/* ================= Files (My Files) ================= */
+let files = [];
+const loaded = {};
+function curId(app){ return store.get('cur.'+app, null); }
+function meta(id){ return files.find(f=>f.id===id); }
+function saveMeta(){ store.set('files', files); }
+function blank(app){
+  if(app==='write') return {html:'<p><br></p>'};
+  if(app==='sheets') return {cells:{}};
+  return {deck:{theme:'light', slides:[{layout:'title',title:'',body:''}]}};
+}
+function snapshot(app){
+  if(app==='write') return {html:page.innerHTML, rtl:page.dir==='rtl'};
+  if(app==='sheets') return {cells};
+  return {deck};
+}
+function flush(app){
+  const id=loaded[app]; if(!id || !meta(id)) return;
+  store.set('file.'+id, snapshot(app));
+  const m=meta(id); m.updated=Date.now(); saveMeta();
+}
+function newFile(app, title, data, go=true){
+  if(loaded[app]) flush(app);
+  const id=app[0]+Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+  files.unshift({id, app, title:title||('Untitled '+({write:'document',sheets:'spreadsheet',slides:'presentation'})[app]), updated:Date.now()});
+  store.set('file.'+id, data||blank(app)); saveMeta();
+  store.set('cur.'+app, id);
+  if(go){ if(current===app) show(app); else location.hash=app; }
+  return id;
+}
+function loadIntoApp(app){
+  let id=curId(app);
+  if(!id || !meta(id)){ const f=files.find(f=>f.app===app); id = f ? f.id : newFile(app, null, null, false); store.set('cur.'+app, id); }
+  const d=store.get('file.'+id, blank(app));
+  if(app==='write') loadWrite(d);
+  if(app==='sheets') loadSheets(d);
+  if(app==='slides') loadSlides(d);
+  loaded[app]=id;
+}
+function openFile(id){
+  const m=meta(id); if(!m) return;
+  if(loaded[m.app]) flush(m.app);
+  store.set('cur.'+m.app, id); loaded[m.app]=null;
+  if(current===m.app) show(m.app); else location.hash=m.app;
+}
+function deleteFile(id){
+  const m=meta(id); if(!m) return;
+  files=files.filter(f=>f.id!==id); saveMeta(); store.del('file.'+id);
+  if(curId(m.app)===id) store.del('cur.'+m.app);
+  if(loaded[m.app]===id) loaded[m.app]=null;
+  renderHome(); toast('Deleted "'+m.title+'"');
+}
+function ago(t){
+  const s=Math.round((Date.now()-t)/1000);
+  if(s<60) return 'just now'; if(s<3600) return Math.floor(s/60)+' min ago';
+  if(s<86400) return Math.floor(s/3600)+' hr ago'; if(s<172800) return 'yesterday';
+  return new Date(t).toLocaleDateString();
+}
+const LETTER={write:'W',sheets:'S',slides:'P'};
+function renderHome(){
+  const list=[...files].sort((a,b)=>b.updated-a.updated);
+  $('#recent').innerHTML = list.length ? list.map(f=>`
+    <div class="file" data-id="${f.id}">
+      <div class="fic" style="background:${APPS[f.app].color}">${LETTER[f.app]}</div>
+      <div class="fmeta"><div class="fname">${esc(f.title)}</div><div class="fsub">Kepler ${APPS[f.app].name} · ${ago(f.updated)}</div></div>
+      <button class="fbtn" data-ren="${f.id}" title="Rename">✎</button>
+      <button class="fbtn" data-del="${f.id}" title="Delete">🗑</button>
+    </div>`).join('') : '<div class="empty">No files yet — start a new one above.</div>';
+  $$('#recent .file').forEach(r=>r.onclick=e=>{ if(e.target.closest('.fbtn')) return; openFile(r.dataset.id); });
+  $$('#recent [data-ren]').forEach(b=>b.onclick=()=>{ const m=meta(b.dataset.ren); modal({title:'Rename file', fields:[{label:'Name', value:m.title}], okText:'Rename', onOk:([v])=>{ if(v.trim()){ m.title=v.trim(); saveMeta(); renderHome(); } }}); });
+  $$('#recent [data-del]').forEach(b=>b.onclick=()=>{ const m=meta(b.dataset.del); modal({title:`Delete "${m.title}"?`, okText:'Delete', onOk:()=>deleteFile(m.id)}); });
+  $('#tpls').innerHTML = TEMPLATES.map((t,i)=>`
+    <button class="tpl" data-tpl="${i}"><div class="tband" style="background:${APPS[t.app].color}"><span>${t.icon}</span></div>
+    <div class="tbody"><b>${esc(t.name)}</b><small>Kepler ${APPS[t.app].name}</small></div></button>`).join('');
+  $$('#tpls .tpl').forEach(b=>b.onclick=()=>{ const t=TEMPLATES[+b.dataset.tpl]; newFile(t.app, t.name, JSON.parse(JSON.stringify(t.data))); });
+}
+
+/* ================= PDF / Print ================= */
+function sheetPrintHTML(){
+  cache={};
+  let maxR=0,maxC=0; Object.keys(cells).forEach(id=>{ if(rawVal(id)!==''||cells[id].bg){ maxR=Math.max(maxR,+id.slice(1)); maxC=Math.max(maxC,id.charCodeAt(0)-64); } });
+  if(!maxR) return '<p>(Empty spreadsheet)</p>';
+  let h='<table class="p-sheet">';
+  for(let r=1;r<=maxR;r++){ h+='<tr>'; for(let c=0;c<maxC;c++){ const id=colName(c)+r, cell=cells[id]||{}, v=evalId(id);
+    const st=[cell.b?'font-weight:700':'', cell.i?'font-style:italic':'', cell.bg?'background:'+cell.bg:'', cell.fc?'color:'+cell.fc:'', 'text-align:'+(cell.al||(typeof v==='number'?'right':'left'))].filter(Boolean).join(';');
+    h+=`<td style="${st}">${esc(fmt(v,cell))}</td>`; } h+='</tr>'; }
+  return h+'</table>';
+}
+function printNow(app){
+  flush(app);
+  const pa=$('#printArea'); let html='', css='@page{size:A4;margin:16mm}';
+  const t=$('#docTitle').value||'Document';
+  if(app==='write') html=`<div class="page p-write" dir="${page.dir||'ltr'}">${page.innerHTML}</div>`;
+  if(app==='sheets') html=`<h2 class="p-title">${esc(t)}</h2>`+sheetPrintHTML();
+  if(app==='slides'){ css='@page{size:13.333in 7.5in;margin:0}'; html=deck.slides.map(s=>`<div class="p-slide">${slideHTML(s,false)}</div>`).join(''); }
+  pa.innerHTML=html; $('#pageStyle').textContent=css;
+  if(window.KeplerAndroid){ try{ KeplerAndroid.print(t); }catch(e){ toast('Could not open print'); } return; }
+  const old=document.title; document.title=t;
+  try{ window.print(); }catch(e){ toast('Printing is blocked here'); }
+  setTimeout(()=>document.title=old, 1500);
+}
+
+/* ================= Templates ================= */
+const PKR='pkr', HB='#d6efe1';
+const TEMPLATES = [
+ {app:'write', icon:'👤', name:'Resume / CV', data:{html:`<h1>Your Name</h1><p><b>Job Title</b> · City, Country · you@email.com · +92 300 0000000</p><hr><h2>Profile</h2><p>Hard-working and reliable professional with 3+ years of experience in customer service and office management. Good at communication, MS Office tools and solving problems quickly.</p><h2>Experience</h2><h3>Office Assistant — Company Name</h3><p><i>Jan 2023 – Present · Lahore</i></p><ul><li>Managed daily office records, files and schedules</li><li>Prepared reports, invoices and presentations</li><li>Handled customer calls and emails</li></ul><h3>Customer Service Officer — Company Name</h3><p><i>Jun 2021 – Dec 2022 · Lahore</i></p><ul><li>Answered 50+ customer queries daily</li><li>Improved customer satisfaction score by 15%</li></ul><h2>Education</h2><p><b>Bachelor of Commerce</b> — University Name, 2021</p><p><b>Intermediate (ICS)</b> — College Name, 2018</p><h2>Skills</h2><ul><li>MS Office / Kepler Office (Write, Sheets, Slides)</li><li>Communication — English &amp; Urdu</li><li>Time management and teamwork</li></ul><h2>References</h2><p>Available on request.</p>`}},
+ {app:'write', icon:'✉️', name:'Formal Letter', data:{html:`<p style="text-align:right">Your Name<br>Street Address<br>City, Postal Code<br>you@email.com</p><p>${new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})}</p><p>The Manager<br>Company Name<br>Street Address<br>City</p><p><b>Subject: Application for the post of ____________</b></p><p>Dear Sir / Madam,</p><p>I am writing to ____________. Explain the purpose of your letter clearly in the first paragraph.</p><p>In the second paragraph, give the important details, reasons or background information that supports your request.</p><p>In the last paragraph, say what you would like to happen next and thank the reader for their time.</p><p>Yours sincerely,</p><p><br></p><p><b>Your Name</b></p>`}},
+ {app:'write', icon:'📝', name:'Meeting Notes', data:{html:`<h1>Meeting Notes</h1><table><tr><th>Date</th><td>${new Date().toLocaleDateString()}</td></tr><tr><th>Time</th><td>10:00 AM</td></tr><tr><th>Location</th><td>Office / Online</td></tr><tr><th>Attendees</th><td>Name 1, Name 2, Name 3</td></tr></table><h2>Agenda</h2><ol><li>Review of last week</li><li>New project updates</li><li>Any other business</li></ol><h2>Discussion</h2><p>Key points that were discussed…</p><h2>Decisions</h2><ul><li>Decision 1</li><li>Decision 2</li></ul><h2>Action Items</h2><table><tr><th>Task</th><th>Owner</th><th>Due date</th></tr><tr><td>Task 1</td><td>Name</td><td>Date</td></tr><tr><td>Task 2</td><td>Name</td><td>Date</td></tr></table>`}},
+ {app:'sheets', icon:'💰', name:'Monthly Budget', data:{cells:{
+   A1:{v:'Monthly Budget',b:1}, A3:{v:'Income',b:1,bg:HB}, B3:{v:'Amount',b:1,bg:HB},
+   A4:{v:'Salary'}, B4:{v:'80000',n:PKR}, A5:{v:'Other income'}, B5:{v:'5000',n:PKR},
+   A6:{v:'Total Income',b:1}, B6:{v:'=SUM(B4:B5)',b:1,n:PKR},
+   A8:{v:'Expenses',b:1,bg:'#fde2d6'}, B8:{v:'Amount',b:1,bg:'#fde2d6'},
+   A9:{v:'Rent'}, B9:{v:'25000',n:PKR}, A10:{v:'Food & groceries'}, B10:{v:'15000',n:PKR}, A11:{v:'Electricity, gas & water'}, B11:{v:'6000',n:PKR},
+   A12:{v:'Transport'}, B12:{v:'5000',n:PKR}, A13:{v:'Mobile & internet'}, B13:{v:'2500',n:PKR}, A14:{v:'Other'}, B14:{v:'5000',n:PKR},
+   A15:{v:'Total Expenses',b:1}, B15:{v:'=SUM(B9:B14)',b:1,n:PKR},
+   A17:{v:'Savings',b:1,bg:'#fff59d'}, B17:{v:'=B6-B15',b:1,bg:'#fff59d',n:PKR},
+   A18:{v:'Savings %'}, B18:{v:'=B17/B6',n:'pct'} }}},
+ {app:'sheets', icon:'🧾', name:'Invoice', data:{cells:{
+   A1:{v:'INVOICE',b:1,fc:'#1e9e63'}, A2:{v:'Your Business Name'}, A3:{v:'Invoice #'}, B3:{v:'INV-001'}, A4:{v:'Date'}, B4:{v:'=TODAY()'},
+   A6:{v:'Bill To',b:1}, B6:{v:'Customer Name'},
+   A8:{v:'Item',b:1,bg:HB}, B8:{v:'Qty',b:1,bg:HB}, C8:{v:'Price',b:1,bg:HB}, D8:{v:'Total',b:1,bg:HB},
+   A9:{v:'Product / service 1'}, B9:{v:'2'}, C9:{v:'1500',n:PKR}, D9:{v:'=B9*C9',n:PKR},
+   A10:{v:'Product / service 2'}, B10:{v:'1'}, C10:{v:'3000',n:PKR}, D10:{v:'=B10*C10',n:PKR},
+   A11:{v:'Product / service 3'}, B11:{v:'5'}, C11:{v:'200',n:PKR}, D11:{v:'=B11*C11',n:PKR},
+   C14:{v:'Subtotal',b:1}, D14:{v:'=SUM(D9:D12)',n:PKR},
+   C15:{v:'Tax %'}, B15:{v:'0.17',n:'pct'}, A15:{v:'Tax rate →'}, D15:{v:'=D14*B15',n:PKR},
+   C16:{v:'Grand Total',b:1,bg:'#fff59d'}, D16:{v:'=D14+D15',b:1,bg:'#fff59d',n:PKR},
+   A18:{v:'Thank you for your business!',i:1} }}},
+ {app:'sheets', icon:'🎓', name:'Result Sheet', data:{cells:(()=>{ const c={A1:{v:'Student Result Sheet',b:1}};
+   ['Name','English','Math','Science','Urdu','Total','Percentage','Grade'].forEach((h,i)=>c[colName(i)+'3']={v:h,b:1,bg:HB});
+   [['Ali',78,85,90,70],['Sara',88,92,81,85],['Usman',55,60,48,65],['Ayesha',92,95,89,90],['Hamza',35,42,38,50]].forEach((s,k)=>{ const r=k+4;
+     c['A'+r]={v:s[0]}; for(let j=1;j<5;j++) c[colName(j)+r]={v:String(s[j])};
+     c['F'+r]={v:`=SUM(B${r}:E${r})`}; c['G'+r]={v:`=F${r}/400`,n:'pct'};
+     c['H'+r]={v:`=IF(G${r}>=0.8,"A",IF(G${r}>=0.6,"B",IF(G${r}>=0.4,"C","F")))`,al:'center',b:1}; });
+   c.A10={v:'Class average',b:1}; c.F10={v:'=AVERAGE(F4:F8)',b:1,n:'2'}; c.G10={v:'=F10/400',b:1,n:'pct'};
+   return c; })()}},
+ {app:'slides', icon:'🏫', name:'School Project', data:{deck:{theme:'ocean', slides:[
+   {layout:'title', title:'My School Project', body:'Student Name · Class · School Name'},
+   {layout:'content', title:'Introduction', body:'<ul><li>What is this project about?</li><li>Why did you choose this topic?</li><li>What will you explain today?</li></ul>'},
+   {layout:'content', title:'Key Facts', body:'<ul><li>Fact number one</li><li>Fact number two</li><li>Fact number three</li><li>Fact number four</li></ul>'},
+   {layout:'content', title:'What I Learned', body:'<ul><li>Main lesson from this project</li><li>Something that surprised me</li><li>How it is useful in daily life</li></ul>'},
+   {layout:'content', title:'Conclusion', body:'Summarise your project in two or three simple sentences.'},
+   {layout:'title', title:'Thank You!', body:'Any questions?'} ]}}},
+ {app:'slides', icon:'🚀', name:'Business Pitch', data:{deck:{theme:'dark', slides:[
+   {layout:'title', title:'Company Name', body:'Your one-line tagline goes here'},
+   {layout:'content', title:'The Problem', body:'<ul><li>What problem do your customers face?</li><li>How big is this problem?</li><li>Why are current solutions not good enough?</li></ul>'},
+   {layout:'content', title:'Our Solution', body:'<ul><li>What your product or service does</li><li>Why it is better, cheaper or faster</li><li>Key features</li></ul>'},
+   {layout:'content', title:'Market', body:'<ul><li>Who are your customers?</li><li>How many of them are there?</li><li>Who are your competitors?</li></ul>'},
+   {layout:'content', title:'Business Model', body:'<ul><li>How you make money</li><li>Pricing</li><li>Sales channels</li></ul>'},
+   {layout:'content', title:'Team', body:'<ul><li>Founder — role and experience</li><li>Co-founder — role and experience</li></ul>'},
+   {layout:'title', title:'Thank You', body:'you@email.com · +92 300 0000000'} ]}}}
+];
+
 /* ================= Start ================= */
-show(location.hash.slice(1));
+(function init(){
+  const saved=store.get('files', null);
+  if(Array.isArray(saved)) files=saved;
+  else {
+    // first run (or upgrade from v1.0): turn old single files into the file list
+    newFile('slides', store.get('slides.title', 'Welcome to Kepler Slides'), {deck: store.get('slides.deck2', null) || SAMPLE_DECK}, false);
+    newFile('sheets', store.get('sheets.title', 'Shopping List'), {cells: store.get('sheets.cells', null) || SAMPLE_CELLS}, false);
+    newFile('write', store.get('write.title', 'Welcome to Kepler Write'), {html: store.get('write.doc2', null) || DEFAULT_DOC, rtl: store.get('write.rtl', false)}, false);
+  }
+  show(location.hash.slice(1));
+})();
+window.addEventListener('pagehide', ()=>{ ['write','sheets','slides'].forEach(a=>{ if(loaded[a]) flush(a); }); });
+document.addEventListener('visibilitychange', ()=>{ if(document.hidden) ['write','sheets','slides'].forEach(a=>{ if(loaded[a]) flush(a); }); });
 </script>
 </body>
 </html>
